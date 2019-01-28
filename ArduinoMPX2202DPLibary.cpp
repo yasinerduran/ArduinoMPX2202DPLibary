@@ -11,13 +11,14 @@ float * MPX2202DP :: measurePressure(){
     
     last_pressures[0] = 25 * (((pin_1_voltage - referance_voltage)*100)/5);
     last_pressures[1] = 25 * (((pin_2_voltage - referance_voltage)*100)/5);
-    
+    last_pressures_bar[0] = last_pressures[0]*bar_equal;
+    last_pressures_bar[1] = last_pressures[1]*bar_equal;
     return last_pressures;
 }
 
 float * MPX2202DP :: measurePressureForBar(){
      measurePressure();
-    return {last_pressures[0]*bar_equal, last_pressures[1]*bar_equal};
+     return last_pressures_bar;
 }
 
 // For the pins mode in setup loop
